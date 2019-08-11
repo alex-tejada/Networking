@@ -1,0 +1,21 @@
+config t
+username admin privilege 15 password cisco
+config t
+
+interface fa0/0
+ip address 10.10.10.254 255.255.255.0
+no shut
+config t
+line vty 0 15
+login local
+
+config t
+interface vlan 1 
+ip address 10.10.10.1 255.255.255.0
+no shut
+config t
+interface fa0/0
+no shut
+config t
+line vty 0 15
+login local

@@ -1,0 +1,18 @@
+router eigrp 1
+network 172.150.100.0 0.0.0.255 area 0
+network 172.150.102.0 0.0.0.255 area 0
+network 172.150.103.0 0.0.0.255 area 0
+network 172.150.104.0 0.0.0.255 area 0
+network 172.150.105.0 0.0.0.255 area 0
+network 172.150.106.0 0.0.0.255 area 0
+network 172.150.50.0 0.0.0.255 area 0
+network 172.150.99.0 0.0.0.255 area 0
+network 172.150.121.0 0.0.0.255 area 0
+network 172.150.122.0 0.0.0.255 area 0
+network 172.150.123.0 0.0.0.255 area 0
+network 172.150.124.0 0.0.0.255 area 0
+network 172.150.51.0 0.0.0.255 area 0
+network 172.150.199.0 0.0.0.255 area 0
+network 10.1.10.0 0.0.0.3 area 0
+network 192.150.10.0 255.255.255.252
+

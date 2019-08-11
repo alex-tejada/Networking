@@ -1,0 +1,47 @@
+config t
+
+ntp server 172.16.30.2
+ntp update-calendar
+logging 192.168.1.6
+service timestamp log datetime msec
+
+ip default-gateway 172.16.10.1
+ip domain-name cisco.com
+crypto key generate rsa
+yes
+1024
+ip ssh version 2
+ip ssh time-out 90
+ip ssh authentication-retries 2
+line vty 0 15
+transport input all
+login local
+exit
+username administrador privilege 15 secret 1234
+username tecnico privilege 10 secret 1234
+username usuario privilege 5 secret 1234
+enable secret class
+exit
+
+
+
+ip domain-name ccnasecurity.com
+crypto key generate rsa
+yes
+1024
+ip ssh version 2
+ip ssh time-out 90
+ip ssh authentication-retries 2
+line vty 0 15
+transport input ssh
+login local
+exit
+username SSHadmin privilege 15 secret ciscosshpa55
+exit
+
+
+ntp server 172.16.10.130
+ntp update-calendar
+
+logging 172.16.10.66
+service timestamp log datetime msec

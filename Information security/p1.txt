@@ -1,0 +1,57 @@
+Switch(config-if)#
+Switch(config-if)#
+Switch(config-if)#exit
+Switch(config)#int vlan 1
+Switch(config-if)#ip add 10.0.0.0 255.255.0.0
+Bad mask /16 for address 10.0.0.0
+Switch(config-if)#ip add 10.0.0.100 255.255.0.0
+Switch(config-if)#no shut
+
+Switch(config-if)#
+%LINK-5-CHANGED: Interface Vlan1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Vlan1, changed state to up
+
+Switch(config-if)#exit
+Switch(config)#line console 0
+Switch(config-line)#enable password cisco
+Switch(config)#line vty 0 4
+Switch(config-line)#password cisco
+Switch(config-line)#login local
+Switch(config-line)#no login local
+Switch(config-line)#exit
+Switch(config)#line vty 0 15
+Switch(config-line)#login local
+Switch(config-line)#exit
+Switch(config)#hostname S1
+S1(config)#hostname SW1
+SW1(config)#vlan 10
+SW1(config-vlan)#name VLAN10
+SW1(config-vlan)#exit
+SW1(config)#int fa0/1
+SW1(config-if)#switchport mode access
+SW1(config-if)#switchport access vlan 10
+SW1(config-if)#no shut
+SW1(config-if)#exit
+SW1(config)#int fa0/1
+SW1(config-if)#no switchport
+% Incomplete command.
+SW1(config-if)#no switchport mode access
+Command rejected: An interface must be configured to the Access or Trunk	modes to be configured to NoNegotiate.
+SW1(config-if)#
+%LINK-3-UPDOWN: Interface FastEthernet0/1, changed state to down
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/1, changed state to down
+
+%LINK-5-CHANGED: Interface FastEthernet0/2, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/2, changed state to up
+
+SW1(config-if)#
+SW1(config-if)#
+SW1(config-if)#
+SW1(config-if)#exit
+SW1(config)#username admin privilege 15 password cisco
+SW1(config)#
+
+A8-1E-84-7F-BF-7D

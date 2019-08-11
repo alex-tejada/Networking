@@ -1,0 +1,72 @@
+ip dhcp excluded-address 10.0.1.2 10.0.1.5
+ip dhcp excluded-address 10.0.2.2 10.0.1.5
+ip dhcp excluded-address 10.0.3.2 10.0.1.5
+ip dhcp excluded-address 10.0.4.2 10.0.1.5
+
+ip dhcp pool VLAN10
+network 10.0.1.0 255.255.255.0
+default-router 10.0.1.1
+ip dhcp pool VLAN20
+network 10.0.2.0 255.255.255.0
+default-router 10.0.2.1
+ip dhcp pool VLAN30
+network 10.0.3.0 255.255.255.0
+default-router 10.0.3.1
+ip dhcp pool VLAN40
+network 10.0.4.0 255.255.255.0
+default-router 10.0.4.1
+
+int fa0/1
+switchport access vlan 210
+exit
+int fa0/2
+switchport access vlan 220
+exit
+int fa0/3
+switchport access vlan 230
+exit
+int fa0/4
+switchport access vlan 240
+exit
+int fa0/5
+switchport access vlan 250
+exit
+
+
+ip dhcp excluded-address 172.168.10.1 172.168.10.10
+ip dhcp excluded-address 172.168.20.1 172.168.20.10
+ip dhcp excluded-address 172.168.30.1 172.168.30.10
+ip dhcp excluded-address 172.168.40.1 172.168.40.10
+ip dhcp excluded-address 172.168.50.1 172.168.50.10
+
+ip dhcp pool NISSAN
+network 172.168.10.0 255.255.255.0
+default-router 172.168.10.1
+ip dhcp pool ASSET
+network 172.168.20.0 255.255.255.0
+default-router 172.168.20.1
+ip dhcp pool IT
+network 172.168.30.0 255.255.255.0
+default-router 172.168.30.1
+ip dhcp pool DELPHI
+network 172.168.40.0 255.255.255.0
+default-router 172.168.40.1
+ip dhcp pool INDEX
+network 172.168.50.0 255.255.255.0
+default-router 172.165.80.1
+
+int fa0/1
+switchport access vlan 110
+exit
+int fa0/2
+switchport access vlan 120
+exit
+int fa0/3
+switchport access vlan 130
+exit
+int fa0/4
+switchport access vlan 140
+exit
+int fa0/5
+switchport access vlan 150
+exit

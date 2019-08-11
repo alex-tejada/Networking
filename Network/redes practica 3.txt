@@ -1,0 +1,112 @@
+int fa0/1.2
+encapsulation dot1q 2
+ip add 172.160.70.1 255.255.255.0
+no shutdown
+exit
+
+OSPF 
+
+router ospf 1
+network 192.168.15.0 0.0.0.127 area 0
+network 172.160.20.0 0.0.0.255 area 0
+network 172.160.30.0 0.0.0.255 area 0
+network 172.160.40.0 0.0.0.255 area 0
+network 172.160.50.0 0.0.0.255 area 0
+network 172.160.60.0 0.0.0.255 area 0
+network 172.160.70.0 0.0.0.255 area 0
+network 10.1.1.0 0.0.0.3 area 0
+
+SSH ROUTER
+
+config t
+ip domain-name utcj.edu
+crypto key generate rsa
+1024
+line vty 0 4
+transport input ssh
+login local
+exit
+username admin privilege 15 password tejada
+enable secret tejada
+exit
+
+SSH SWITCH
+
+config t
+interface vlan 1
+ip add 172.150.99.2 255.255.255.0
+no shutdown
+exit
+ip default-gateway 172.150.99.1
+ip domain-name utcj.edu
+crypto key generate rsa
+yes
+1024
+ip ssh version 2
+line vty 0 15
+transport input ssh
+login local
+exit
+username admin privilege 15 password tejada
+enable secret class
+exit
+
+port-security
+
+int range fa0/1
+switchport mode access
+switchport port-security
+switchport port-security maximum 5
+switchport port-security violation shutdown
+switchport port-security mac-address sticky
+
+vlan Switch
+
+vlan 122
+name Operaciones
+exit
+vlan 123
+name Finanzas
+exit
+vlan 124
+name Visitantes
+exit
+vlan 121
+name Calidad
+exit
+vlan 501
+name VOICE
+exit
+
+vtp switch
+
+config t
+vtp domain utcj.edu
+vtp mode server
+vtp password tejada
+
+config t
+vtp domain utcj.edu
+vtp mode client
+vtp password tejada
+
+Switchport MULTILAYER
+
+int fa0/24
+switchport trunk encapsulation dot1q
+switchport mode trunk
+no shutdown
+
+Config basica
+
+config t
+line vty 0 4
+password tejada
+login
+exit
+line console 0
+password tejada
+login
+exit
+enable secret tejada
+banner motd $Solo Peronal Autorizado tejada nava$

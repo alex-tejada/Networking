@@ -1,0 +1,47 @@
+vlan10: 192.168.10.9/24
+vlan20: 192.168.20.0/24
+valn99: 102.168.99.0/24
+
+vlan30: 192.168.30.0/24
+vlan 40: 102.168.40.0/24
+vlan1: 192.168.50.0/24
+
+domain: utcj.edu
+password: cisco
+
+ping en cualquier vlan
+ssh en cualquier dispositivo
+
+M1#config t
+M1(config)#ip domain-name utcj.edu
+M1(config)#crypto key generate rsa
+How many bits in the modulus [512]: 1024
+M1(config)#user admin password cisco
+M1(config)#line vty 0 15
+M1(config-line)#login local 
+M1(config-line)#transport input all
+M1(config-line)#exit
+M1(config)#exit
+M1#exit
+
+C:\>ssh -l admin 192.168.10.3
+
+config t
+line vty 0 4
+password cisco
+login
+exit
+line console 0
+password cisco
+login
+exit
+enable secret class
+service password-encryption
+banner motd $Authorized Access Only$
+
+int range fa0/10-11
+switchport mode access
+switchport port-security
+switchport port-security maximum 5
+switchport port-security violation shutdown
+switchport port-security mac-address sticky

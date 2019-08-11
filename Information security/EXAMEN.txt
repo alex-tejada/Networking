@@ -1,0 +1,23 @@
+LISTAS
+TIPOS DE LISTAS 5
+ORNDENADAS, NO ORDENADAS, POR DEFINICION, MENU Y DIRECTORIO
+TABLAS, UNION DE TABLAS Y COLUMNAS
+MODIFICADORES DE ACCESOS(PROPIEDADES DE UNA TABLA)
+CON CSS EXTERNO, INTERNO 
+MAQUETACION BASICA 
+DEGRADADOS, MOVIMIENTOS (TRANSITIONES)
+
+
+DESCARGAR UBUNTU
+Temas de Examen de Seguridad 
+
+Conceptos:
+
+Disponibilidad
+Confidencialidad
+Integridad
+
+Comandos configuracion
+Metodos y medidas de seguridad
+Cifrado simetrico/Asimetrico y algoritmos
+Normas seguridad ISO27000

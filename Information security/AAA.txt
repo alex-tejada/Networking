@@ -1,0 +1,41 @@
+AAA for console access
+
+R1
+username Admin1 secret admin1pa55
+aaa new-model
+aaa authentication login default local
+
+line console 0
+login authentication default
+end
+
+ip domain-name cisco.com
+crypto key generate rsa
+1024
+
+aaa authentication login SSH-LOGIN local
+
+line vty 0 4
+login authentication SSH-LOGIN
+transport input ssh
+end
+
+
+Server-Based AAA Authentication
+
+R2
+username Admin2 secret admin2pa55
+tacacs-server host 192.168.2.2
+tacacs-server key tacacspa55
+
+aaa new-model
+aaa authentication login default group tacacs local
+
+line console 0
+login authentication default
+end
+
+
+
+
+

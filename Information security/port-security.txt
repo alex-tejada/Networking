@@ -1,0 +1,31 @@
+Port-Security
+
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security violation shutdown
+switchport port-security mac-address sticky
+
+NTP
+
+ntp server ip
+ntp update-calendar
+
+SYSLOG
+
+logging ip / logging host ip
+service timestamp log datetime msec
+show logging
+
+USUARIOS
+
+username name privilege (0-15) password/secret pass
+enable secret level (0-15) pass
+
+SSH
+
+ip domain-name name
+crypto key generate rsa
+ip ssh time-out (time sec)
+ip ssh authentication-retries (number try)
+ip ssh version 2

@@ -1,0 +1,18 @@
+
+ROUTER
+ip route 0.0.0.0 0.0.0.0 10.80.20.2
+
+ip nat pool NERI 201.100.10.1 201.100.10.6 netmask 255.255.255.224
+ip nat inside source list 10 pool NERI overload
+access-list 10 permit 172.16.10.0 0.0.0.255
+
+int f0/0
+ip nat inside
+
+int s0/0/0
+ip nat outside
+
+
+ISP
+
+ip route 201.100.10.0 255.255.255.248 10.80.20.1

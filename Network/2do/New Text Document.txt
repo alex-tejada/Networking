@@ -1,0 +1,139 @@
+ip dhcp excluded-address 192.168.0.1 192.168.0.10 
+ip dhcp pool voice_1
+default-router 192.168.0.1
+option 150 ip 192.168.0.1
+network 192.168.0.0 255.255.255.0
+telephony-service 
+max-dn 4
+max-ephone 4
+ip source-address 192.168.0.1 port 2000
+auto assign 1 to 4
+exit
+ephone-dn 1
+number 1001
+exit
+ephone-dn 2
+number 2
+exit
+inter fast 0/0
+ip add 192.168.0.1 255.255.255.0
+no shut
+interface serial 0/0/0
+ip add 10.0.0.1 255.255.255.252
+no shut
+ip route 10.0.1.0 255.255.255.252 10.0.0.2
+
+interface fastethernet 0/1
+switchport mode trunk
+exit
+interface range fastethernet 0/2-10
+switchport voice vlan 1
+spanning-tree portfast
+exit
+
+
+ip dhcp excluded-address 192.168.1.1 192.168.1.10
+ip dhcp pool voice_2
+default-router 192.168.1.1
+option 150 ip 192.168.1.1
+network 192.168.1.0 255.255.255.0
+exit
+interface fastethernet 0/0
+ip address 192.168.1.1 255.255.255.0
+no shutdown
+exit
+telephony-service
+max-dn 4
+max-ephone 4
+ip source-address 192.168.1.1 port 2000
+auto assign 1 to 4
+ephone-dn 1
+number 2001
+ephone-dn 2
+number 2002
+exit
+interface serial 0/0/0
+ip address 10.0.0.2 255.255.255.252
+no shut
+exit
+interface serial 0/0/1
+ip address 10.0.1.1 255.255.255.252
+clock rate 64000
+no shutdown
+
+
+interface fast 0/1
+witchport mode trunk
+exit
+interface range fastethernet 0/2-10
+switchport voice vlan 1
+spanning-tree portfast 
+exit
+
+ip dhcp excluded-address 192.168.2.1 192.168.2.10
+ip dhcp pool voice_3
+default-router 192.168.2.1
+option 150 ip 192.168.2.1
+network 192.168.2.0 255.255.255.0
+exit
+interface fastethernet 0/0
+ip address 192.168.2.1 255.255.255.0
+no shut
+exit
+telephony-service
+max-dn 4
+max-ephone 4
+ip source-address 192.168.2.1 port 2000
+auto assign 1 to 4
+exit
+ephone-dn 1
+number 3001
+ephone-dn 2
+number 3002
+exit
+interface serial 0/0/1
+ip address 10.0.1.2 255.255.255.252
+no shutdown
+ip route 10.0.0.0 255.255.255.252 10.0.1.1
+
+
+dial-peer voice 2000 voip
+destination-pattern 200.
+session target ipv4:10.0.0.2
+
+dial-peer voice 1000 voip 
+destination-pattern 100.
+session target ipv4:10.0.0.1
+dial-peer voice 3000 voip
+destination-pattern 300.
+session target ipv4:10.0.1.2
+exit
+
+dial-peer voice 2000 voip
+destination-pattern 200.
+session target ipv4:10.0.1.1
+
+
+dial-peer voice 3000 voip
+destination-pattern 300.
+session target ipv4:10.0.1.2
+
+
+dial-peer voice 1000 voip
+destination-pattern 100.
+session target ipv4:10.0.0.1 
+
+
+router ospf 1
+network 10.0.0.0 0.0.0.3 area 0
+network 192.168.0.0 0.0.0.255 area 0
+
+router ospf 1
+network 10.0.0.0 0.0.0.3 area 0
+network 10.0.1.0 0.0.0.3 area 0
+network 192.168.1.0 0.0.0.255 area 0
+
+router ospf 1
+network 10.0.0.0 0.0.0.3 area 0
+network 10.0.1.0 0.0.0.3 area 0
+network 192.168.2.0 0.0.0.255 area 0

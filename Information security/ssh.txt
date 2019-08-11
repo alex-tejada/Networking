@@ -1,0 +1,38 @@
+SWITCH
+
+config t
+interface vlan 99
+ip add 172.165.99.7 255.255.255.0
+no shutdown
+exit
+ip default-gateway 172.165.99.1
+ip domain-name cisco.com
+crypto key generate rsa
+yes
+1024
+ip ssh version 2
+line vty 0 15
+transport input all
+login local
+exit
+username admin privilege 15 password cisco
+enable secret class
+exit
+
+ROUTER
+
+ip domain-name cisco.com
+crypto key generate rsa
+yes
+1024
+line vty 0 4
+transport input all
+login local
+exit
+username admin privilege 15 password cisco
+enable secret class
+exit
+
+ITIW4itiw4
+
+erase:nvram
